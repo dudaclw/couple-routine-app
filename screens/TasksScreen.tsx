@@ -3,7 +3,8 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { ScreenHeader } from '../components/ScreenHeader';
 import { SegmentedControl } from '../components/SegmentedControl';
 import { CommitmentRow } from '../components/CommitmentRow';
-import { HeaderManageButton } from '../components/HeaderManageButton';
+import { FabNewActivity } from '../components/FabNewActivity';
+import { HeaderProfileButton } from '../components/HeaderButtons';
 import { colors, fonts } from '../theme';
 import { useCommitments, useProfiles } from '../hooks/useAppData';
 import { supabase } from '../lib/supabase';
@@ -42,7 +43,7 @@ export function TasksScreen() {
 
   return (
     <View style={styles.screen}>
-      <ScreenHeader label="Prazos e compromissos" title="Tarefas" rightSlot={<HeaderManageButton />} />
+      <ScreenHeader label="Prazos e compromissos" title="Tarefas" rightSlot={<HeaderProfileButton />} />
       <View style={styles.filterWrap}>
         <SegmentedControl options={FILTER_OPTIONS} value={filter} onChange={setFilter} />
       </View>
@@ -62,6 +63,7 @@ export function TasksScreen() {
         )}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
       />
+      <FabNewActivity />
     </View>
   );
 }

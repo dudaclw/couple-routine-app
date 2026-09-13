@@ -3,8 +3,13 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useFonts, Quicksand_500Medium, Quicksand_600SemiBold } from '@expo-google-fonts/quicksand';
-import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
+import { Ionicons } from '@expo/vector-icons';
+import {
+  useFonts,
+  RedHatDisplay_400Regular,
+  RedHatDisplay_500Medium,
+  RedHatDisplay_600SemiBold,
+} from '@expo-google-fonts/red-hat-display';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { LoginScreen } from './screens/LoginScreen';
 import { ProfileSetupScreen } from './screens/ProfileSetupScreen';
@@ -31,10 +36,10 @@ function AppContent() {
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    Quicksand_500Medium,
-    Quicksand_600SemiBold,
-    Inter_400Regular,
-    Inter_500Medium,
+    RedHatDisplay_400Regular,
+    RedHatDisplay_500Medium,
+    RedHatDisplay_600SemiBold,
+    ...Ionicons.font,
   });
 
   if (!fontsLoaded) {

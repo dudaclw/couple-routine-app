@@ -2,7 +2,8 @@ import React, { useMemo } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { ScreenHeader } from '../components/ScreenHeader';
 import { RoutineCard } from '../components/RoutineCard';
-import { HeaderManageButton } from '../components/HeaderManageButton';
+import { FabNewActivity } from '../components/FabNewActivity';
+import { HeaderProfileButton } from '../components/HeaderButtons';
 import { colors, fonts } from '../theme';
 import { useCompletions, useProfiles, useRoutineItems } from '../hooks/useAppData';
 import { completionFor, toggleRoutineCompletion } from '../lib/completions';
@@ -20,7 +21,7 @@ export function ExercisesScreen() {
 
   return (
     <View style={styles.screen}>
-      <ScreenHeader label="Rotina da semana" title="Exercícios" rightSlot={<HeaderManageButton />} />
+      <ScreenHeader label="Rotina da semana" title="Exercícios" rightSlot={<HeaderProfileButton />} />
       <FlatList
         contentContainerStyle={styles.content}
         data={activeItems}
@@ -40,6 +41,7 @@ export function ExercisesScreen() {
         }}
         ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
       />
+      <FabNewActivity />
     </View>
   );
 }

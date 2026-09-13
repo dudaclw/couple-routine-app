@@ -6,6 +6,7 @@ import { TodayScreen } from '../screens/TodayScreen';
 import { ExercisesScreen } from '../screens/ExercisesScreen';
 import { TasksScreen } from '../screens/TasksScreen';
 import { ManageHomeScreen } from '../screens/ManageHomeScreen';
+import { ProfileScreen } from '../screens/ProfileScreen';
 import { RoutineFormScreen } from '../screens/RoutineFormScreen';
 import { CommitmentFormScreen } from '../screens/CommitmentFormScreen';
 import { colors, fonts } from '../theme';
@@ -51,6 +52,7 @@ export function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={screenHeaderStyle}>
       <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
+      <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
       <Stack.Screen name="ManageHome" component={ManageHomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="RoutineForm" component={RoutineFormScreen} options={{ title: 'Exercício' }} />
       <Stack.Screen name="CommitmentForm" component={CommitmentFormScreen} options={{ title: 'Tarefa' }} />

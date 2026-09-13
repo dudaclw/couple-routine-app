@@ -20,8 +20,7 @@ export const radii = {
 };
 
 export const fonts = {
-  heading: 'Quicksand_600SemiBold',
-  headingMedium: 'Quicksand_500Medium',
-  body: 'Inter_400Regular',
-  bodyMedium: 'Inter_500Medium',
+  heading: 'RedHatDisplay_600SemiBold',
+  body: 'RedHatDisplay_400Regular',
+  bodyMedium: 'RedHatDisplay_500Medium',
 };

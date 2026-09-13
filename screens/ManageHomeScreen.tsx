@@ -7,7 +7,7 @@ import { Card } from '../components/Card';
 import { AssigneeDot } from '../components/AssigneeDot';
 import { ScreenHeader } from '../components/ScreenHeader';
 import { SegmentedControl } from '../components/SegmentedControl';
-import { HeaderCloseButton } from '../components/HeaderManageButton';
+import { HeaderCloseButton } from '../components/HeaderButtons';
 import { colors, fonts, radii } from '../theme';
 import { useCommitments, useProfiles, useRoutineItems } from '../hooks/useAppData';
 import { supabase } from '../lib/supabase';

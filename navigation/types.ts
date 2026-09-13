@@ -8,6 +8,7 @@ export type TabParamList = {
 
 export type RootStackParamList = {
   MainTabs: NavigatorScreenParams<TabParamList>;
+  Profile: undefined;
   ManageHome: undefined;
   RoutineForm: { id?: string };
   CommitmentForm: { id?: string };

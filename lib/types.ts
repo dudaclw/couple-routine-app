@@ -37,4 +37,17 @@ export interface Profile {
   id: string;
   role: Role;
   display_name: string;
+  partner_id: string | null;
+  avatar_url: string | null;
+  partner_message: string | null;
+  partner_message_updated_at: string | null;
+}
+
+export interface AppNotification {
+  id: string;
+  user_id: string;
+  type: string;
+  payload: { message?: string } | null;
+  read_at: string | null;
+  created_at: string;
 }

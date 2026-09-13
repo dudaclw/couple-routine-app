@@ -6,14 +6,14 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors, fonts, radii } from '../theme';
 import { RootStackParamList } from '../navigation/types';
 
-export function HeaderManageButton() {
+export function HeaderProfileButton() {
   const navigation = useNavigation();
   const handlePress = () => {
-    navigation.getParent<NativeStackNavigationProp<RootStackParamList>>()?.navigate('ManageHome');
+    navigation.getParent<NativeStackNavigationProp<RootStackParamList>>()?.navigate('Profile');
   };
   return (
-    <Pressable onPress={handlePress} hitSlop={12}>
-      <Ionicons name="settings-outline" size={22} color={colors.text} />
+    <Pressable onPress={handlePress} hitSlop={12} accessibilityRole="button" accessibilityLabel="Abrir perfil">
+      <Ionicons name="person-circle-outline" size={24} color={colors.text} />
     </Pressable>
   );
 }

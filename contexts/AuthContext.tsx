@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
+import { translateAuthError } from '../lib/errors';
 import { Profile } from '../lib/types';
 
 interface AuthContextValue {
@@ -48,7 +49,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signIn = async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return error?.message ?? null;
+    return error ? translateAuthError(error.message) : null;
   };
 
   const signOut = async () => {

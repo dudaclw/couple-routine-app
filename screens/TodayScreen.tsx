@@ -4,7 +4,8 @@ import { ScreenHeader } from '../components/ScreenHeader';
 import { DateStrip } from '../components/DateStrip';
 import { RoutineCard } from '../components/RoutineCard';
 import { CommitmentRow } from '../components/CommitmentRow';
-import { HeaderManageButton } from '../components/HeaderManageButton';
+import { FabNewActivity } from '../components/FabNewActivity';
+import { HeaderProfileButton } from '../components/HeaderButtons';
 import { colors, fonts } from '../theme';
 import { useCommitments, useCompletions, useProfiles, useRoutineItems } from '../hooks/useAppData';
 import { completionFor, toggleRoutineCompletion } from '../lib/completions';
@@ -42,7 +43,7 @@ export function TodayScreen() {
       <ScreenHeader
         label={formatHeaderDate(today)}
         title="Hoje"
-        rightSlot={<HeaderManageButton />}
+        rightSlot={<HeaderProfileButton />}
         showBlob
       />
       <ScrollView contentContainerStyle={styles.content}>
@@ -92,6 +93,7 @@ export function TodayScreen() {
           </>
         )}
       </ScrollView>
+      <FabNewActivity />
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
 import { colors, fonts, radii } from '../theme';
 
@@ -23,6 +23,7 @@ export function LoginScreen() {
       style={styles.screen}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
+      <Image source={require('../assets/logo.png')} style={styles.logo} />
       <Text style={styles.title}>Rotina a dois</Text>
       <View style={styles.form}>
         <TextInput
@@ -58,6 +59,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 24,
     gap: 32,
+  },
+  logo: {
+    width: 96,
+    height: 96,
+    borderRadius: radii.xl,
+    alignSelf: 'center',
+    marginBottom: 8,
   },
   title: {
     fontFamily: fonts.heading,

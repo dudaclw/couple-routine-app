@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
 import { useProfiles } from '../hooks/useAppData';
+import { translateDbError } from '../lib/errors';
 import { nextAvailableRole } from '../lib/profiles';
 import { supabase } from '../lib/supabase';
 import { colors, fonts, radii } from '../theme';
@@ -31,7 +32,7 @@ export function ProfileSetupScreen() {
       .insert({ id: session!.user.id, role, display_name: trimmed });
     setSaving(false);
     if (insertError) {
-      setError(insertError.message);
+      setError(translateDbError(insertError.code));
       return;
     }
     await refreshProfile();
