@@ -18,7 +18,15 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "single",
+      "themeColor": "#B97A94",
+      "backgroundColor": "#F7F3F5",
+      "display": "standalone",
+      "name": "Rotina a dois",
+      "shortName": "Rotina a dois",
+      "lang": "pt-BR"
     },
     "plugins": [
       "expo-font",

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,6 +11,7 @@ import { HeaderCloseButton } from '../components/HeaderButtons';
 import { colors, fonts, radii } from '../theme';
 import { useCommitments, useProfiles, useRoutineItems } from '../hooks/useAppData';
 import { supabase } from '../lib/supabase';
+import { confirmAction } from '../lib/confirm';
 import { formatShortDate, WEEKDAY_LABELS } from '../lib/dates';
 import { RootStackParamList } from '../navigation/types';
 import { RoutineItem } from '../lib/types';
@@ -28,10 +29,12 @@ async function setRoutineActive(item: RoutineItem, active: boolean) {
 
 function confirmDeactivate(item: RoutineItem) {
   if (item.active) {
-    Alert.alert('Desativar exercício', `Desativar "${item.title}"? Isso não apaga o histórico já registrado.`, [
-      { text: 'Cancelar', style: 'cancel' },
-      { text: 'Desativar', style: 'destructive', onPress: () => setRoutineActive(item, false) },
-    ]);
+    confirmAction(
+      'Desativar exercício',
+      `Desativar "${item.title}"? Isso não apaga o histórico já registrado.`,
+      'Desativar',
+      () => setRoutineActive(item, false)
+    );
   } else {
     setRoutineActive(item, true);
   }

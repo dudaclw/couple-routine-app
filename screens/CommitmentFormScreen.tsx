@@ -15,6 +15,23 @@ import { TYPE_LABELS } from '../components/TypeBadge';
 const TYPES: CommitmentType[] = ['task', 'exam', 'assignment', 'appointment'];
 const TITLE_MAX_LENGTH = 80;
 
+// react-native-web renders a plain <input> as a real DOM node, so it needs CSS
+// (px strings), not a RN StyleSheet id — this mirrors styles.input visually.
+const webDateInputStyle: React.CSSProperties = {
+  backgroundColor: colors.card,
+  border: `1px solid ${colors.border}`,
+  borderRadius: radii.sm,
+  paddingLeft: 14,
+  paddingRight: 14,
+  paddingTop: 12,
+  paddingBottom: 12,
+  fontFamily: fonts.body,
+  fontSize: 15,
+  color: colors.text,
+  width: '100%',
+  boxSizing: 'border-box',
+};
+
 export function CommitmentFormScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, 'CommitmentForm'>>();
@@ -92,21 +109,35 @@ export function CommitmentFormScreen() {
         <AssigneePillRow value={assignedTo} onChange={setAssignedTo} profiles={profiles} />
 
         <Text style={styles.label}>Data</Text>
-        <Pressable style={styles.input} onPress={() => setShowPicker(true)}>
-          <Text style={{ fontFamily: fonts.body, fontSize: 15, color: colors.text }}>
-            {formatShortDate(toISODate(dueDate))}
-          </Text>
-        </Pressable>
-        {showPicker && (
-          <DateTimePicker
-            value={dueDate}
-            mode="date"
-            display={Platform.OS === 'ios' ? 'inline' : 'default'}
-            onChange={(_event, selected) => {
-              setShowPicker(Platform.OS === 'ios');
-              if (selected) setDueDate(selected);
-            }}
-          />
+        {Platform.OS === 'web' ? (
+          React.createElement('input', {
+            type: 'date',
+            value: toISODate(dueDate),
+            onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+              const [y, m, d] = e.target.value.split('-').map(Number);
+              if (y && m && d) setDueDate(new Date(y, m - 1, d));
+            },
+            style: webDateInputStyle,
+          })
+        ) : (
+          <>
+            <Pressable style={styles.input} onPress={() => setShowPicker(true)}>
+              <Text style={{ fontFamily: fonts.body, fontSize: 15, color: colors.text }}>
+                {formatShortDate(toISODate(dueDate))}
+              </Text>
+            </Pressable>
+            {showPicker && (
+              <DateTimePicker
+                value={dueDate}
+                mode="date"
+                display={Platform.OS === 'ios' ? 'inline' : 'default'}
+                onChange={(_event, selected) => {
+                  setShowPicker(Platform.OS === 'ios');
+                  if (selected) setDueDate(selected);
+                }}
+              />
+            )}
+          </>
         )}
       </View>
 
